@@ -12,4 +12,5 @@ import lombok.Setter;
 public class TaskTagRequestDTO {
     private Long taskId;
     private Long tagId;
+
 }

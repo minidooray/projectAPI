@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "Tasks")
 @Getter
-@Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor

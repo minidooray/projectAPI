@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "Projects")
-@Getter @Setter
+@Getter
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,14 +17,19 @@ public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long projectId;
-    @JoinColumn(name = "project_admin_id")
+    @Column(name = "project_admin_id")
     private String projectAdminId;
-    @JoinColumn(name = "project_name")
+    @Column(name = "project_name")
     private String projectName;
-    @JoinColumn(name = "project_description")
+    @Column(name = "project_description")
     private String projectDescription;
-    @JoinColumn(name = "project_status")
+    @Column(name = "project_status")
     private String projectStatus;
 
+    public void updateStatus(String status){
+        if(status != null){
+            this.projectStatus = status;
+        }
+    }
 
 }

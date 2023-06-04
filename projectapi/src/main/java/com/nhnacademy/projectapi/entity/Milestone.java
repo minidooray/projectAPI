@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "Milestones")
 @Getter
-@Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor

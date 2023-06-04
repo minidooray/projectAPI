@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "Tags")
 @Getter
-@Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor

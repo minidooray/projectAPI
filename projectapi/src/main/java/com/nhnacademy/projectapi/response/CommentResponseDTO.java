@@ -1,4 +1,4 @@
-package com.nhnacademy.projectapi.request;
+package com.nhnacademy.projectapi.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProjectMemberRequestDTO {
-    private Long projectId;
+public class CommentResponseDTO {
+    private Long commentId;
+    private String commentContent;
     private String accountId;
+    private Long taskId;
 
 }

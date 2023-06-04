@@ -9,7 +9,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "Comments")
 @Getter
-@Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor

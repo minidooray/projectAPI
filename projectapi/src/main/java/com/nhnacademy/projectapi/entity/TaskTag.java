@@ -9,7 +9,6 @@ import java.io.Serializable;
 @Entity
 @Table(name = "TaskTags")
 @Getter
-@Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor

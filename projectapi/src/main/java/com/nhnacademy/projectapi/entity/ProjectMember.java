@@ -10,29 +10,33 @@ import java.io.Serializable;
 @Entity
 @Table(name = "Project_members")
 @Getter
-@Setter
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProjectMember {
 
     @EmbeddedId
-    Pk pk;
+    private Pk pk;
+
+//    @MapsId("accountId")
+//    @Column(name="account_id")
+//    private String accountId;
 
     @MapsId("projectId")
     @JoinColumn(name="projectId")
     @ManyToOne
     private Project project;
 
-    @Getter
     @EqualsAndHashCode
     @NoArgsConstructor
     @AllArgsConstructor
     @Embeddable
-    private static class Pk implements Serializable {
+    @Getter
+    public static class Pk implements Serializable {
         @Column(name = "account_id")
         private String accountId;
         @Column(name="project_id")
         private Long projectId;
+
     }
 }

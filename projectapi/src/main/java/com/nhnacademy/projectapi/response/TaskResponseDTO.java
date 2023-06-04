@@ -1,4 +1,4 @@
-package com.nhnacademy.projectapi.request;
+package com.nhnacademy.projectapi.response;
 
 
 import lombok.AllArgsConstructor;
@@ -12,7 +12,9 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaskRequestDTO {
+public class TaskResponseDTO {
+
+    private Long taskId;
     private String taskTitle;
     private String taskContent;
     private String taskManagerId;
