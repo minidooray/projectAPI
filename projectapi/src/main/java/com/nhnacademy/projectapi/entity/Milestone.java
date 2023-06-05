@@ -27,4 +27,15 @@ public class Milestone {
     @Column(name = "project_id")
     private Project project;
 
+    public void modify(String milestoneContent, LocalDate milestoneStartAt, LocalDate milestoneEndAt){
+        if(milestoneContent != null){
+            this.milestoneContent = milestoneContent;
+        }
+        if(milestoneStartAt != null){
+            this.milestoneStartAt = milestoneStartAt;
+        }
+        if(milestoneEndAt != null){
+            this.milestoneEndAt = milestoneEndAt;
+        }
+    }
 }

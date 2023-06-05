@@ -7,8 +7,7 @@ import com.nhnacademy.projectapi.response.ProjectResponseDTO;
 import com.nhnacademy.projectapi.service.ProjectMemberService;
 import com.nhnacademy.projectapi.service.ProjectService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,38 +21,38 @@ public class ProjectController {
     private final ProjectMemberService projectMemberService;
 
     @GetMapping
-    public ResponseEntity<List<ProjectResponseDTO>> getProjects(){
-        return ResponseEntity.ok(projectService.getProjects());
+    public List<ProjectResponseDTO> getProjects(){
+        return projectService.getProjects();
     }
     @GetMapping("/{projectId}")
-    public ResponseEntity<ProjectResponseDTO> getProject(@PathVariable Long projectId){
-        return ResponseEntity.ok(projectService.getProject(projectId));
+    public ProjectResponseDTO getProject(@PathVariable Long projectId){
+        return projectService.getProject(projectId);
     }
-    @PostMapping
-    public ResponseEntity<ProjectResponseDTO> createProject(@RequestBody ProjectRequestDTO dto){
-        return ResponseEntity.ok(projectService.createProject(dto));
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public String createProject(@RequestBody ProjectRequestDTO dto){
+        projectService.createProject(dto);
+        return "{\"result\":\"OK\"}";
     }
-    @PatchMapping("/{projectId}")
-    public ResponseEntity updateProject(@PathVariable Long projectId,
+    @PatchMapping(value = "/{projectId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String updateProject(@PathVariable Long projectId,
                                                             @RequestBody ProjectRequestDTO dto){
         projectService.updateProject(projectId,dto);
-        return new ResponseEntity(HttpStatus.OK);
+        return "{\"result\":\"OK\"}";
     }
-    @PostMapping("/{projectId}/members")
-    public ResponseEntity registerProjectMember(@PathVariable Long projectId,
+    @PostMapping(value = "/{projectId}/members", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String registerProjectMember(@PathVariable Long projectId,
             @RequestBody ProjectMemberRequestDTO dto){
         projectMemberService.registerMember(projectId,dto);
-        return new ResponseEntity(HttpStatus.OK);
+        return "{\"result\":\"OK\"}";
     }
     @PostMapping("/{projectId}/members")
     public List<ProjectMemberResponseDTO> getProjectMember(@PathVariable Long projectId){
         return projectMemberService.getMembers(projectId);
     }
-    @DeleteMapping("/{projectId}/members")
-    public ResponseEntity deleteProjectMember(@PathVariable Long projectId,
+    @DeleteMapping(value = "/{projectId}/members", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String deleteProjectMember(@PathVariable Long projectId,
                                               @RequestBody ProjectMemberRequestDTO dto){
         projectMemberService.deleteMember(projectId,dto);
-        return new ResponseEntity(HttpStatus.OK);
+        return "{\"result\":\"OK\"}";
     }
-
 }

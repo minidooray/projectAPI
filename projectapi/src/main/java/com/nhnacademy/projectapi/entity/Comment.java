@@ -25,4 +25,10 @@ public class Comment {
     @ManyToOne
     @JoinColumn(name = "task_id")
     private Task task;
+
+    public void modify(String commentContent){
+        if(commentContent != null){
+            this.commentContent = commentContent;
+        }
+    }
 }

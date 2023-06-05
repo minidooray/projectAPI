@@ -18,5 +18,6 @@ public class TaskRequestDTO {
     private String taskManagerId;
     private LocalDate taskStartAt;
     private LocalDate taskEndAt;
+    private Long milestoneId;
 
 }

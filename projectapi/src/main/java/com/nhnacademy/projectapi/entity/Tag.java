@@ -24,4 +24,11 @@ public class Tag {
     @ManyToOne
     @JoinColumn(name = "project_id")
     private Project project;
+
+    public void modify(String tagContent){
+        if(tagContent!=null){
+            this.tagContent = tagContent;
+        }
+    }
+
 }

@@ -11,6 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TagResponseDTO {
 
+    private Long tagId;
     private String tagContent;
 
 }

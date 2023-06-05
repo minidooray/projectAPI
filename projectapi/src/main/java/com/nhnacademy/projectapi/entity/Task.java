@@ -35,5 +35,26 @@ public class Task {
     @JoinColumn(name = "project_no")
     private Project project;
 
+    public void modify(String taskTitle,String taskContent,String taskManagerId,
+                       Milestone milestone, LocalDate taskStartAt, LocalDate taskEndAt){
+        if(taskTitle != null){
+            this.taskTitle = taskTitle;
+        }
+        if(taskContent != null){
+            this.taskContent = taskContent;
+        }
+        if(taskManagerId != null){
+            this.taskManagerId = taskManagerId;
+        }
+        if(milestone != null){
+            this.milestone = milestone;
+        }
+        if(taskStartAt != null){
+            this.taskStartAt = taskStartAt;
+        }
+        if(taskEndAt != null){
+            this.taskEndAt = taskEndAt;
+        }
+    }
 
 }

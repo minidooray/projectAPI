@@ -15,7 +15,7 @@ import java.io.Serializable;
 public class TaskTag {
 
     @EmbeddedId
-    Pk pk;
+    private Pk pk;
 
     @MapsId("taskId")
     @JoinColumn(name="task_id")
@@ -31,7 +31,7 @@ public class TaskTag {
     @NoArgsConstructor
     @AllArgsConstructor
     @Embeddable
-    private static class Pk implements Serializable {
+    public static class Pk implements Serializable {
         @Column(name = "task_id")
         private Long taskId;
         @Column(name="tag_id")
