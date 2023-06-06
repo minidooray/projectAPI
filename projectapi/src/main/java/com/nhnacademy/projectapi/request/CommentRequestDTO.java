@@ -10,9 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CommentRequestDTO {
-
     private String commentContent;
     private String accountId;
-    private Long taskId;
-
 }

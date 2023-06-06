@@ -27,8 +27,9 @@ public class CommentController {
     public CommentResponseDTO getComment(@PathVariable Long commentId){
         return commentService.getComment(commentId);
     }
+
     @PostMapping(value = "/comments", produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.CREATED)
     public String createComment(@PathVariable Long projectId,
                                   @RequestBody CommentRequestDTO dto){
         commentService.createComment(projectId,dto);

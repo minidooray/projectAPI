@@ -17,13 +17,8 @@ public class ProjectMember {
 
     @EmbeddedId
     private Pk pk;
-
-//    @MapsId("accountId")
-//    @Column(name="account_id")
-//    private String accountId;
-
     @MapsId("projectId")
-    @JoinColumn(name="projectId")
+    @JoinColumn(name="project_id")
     @ManyToOne
     private Project project;
 
@@ -37,6 +32,5 @@ public class ProjectMember {
         private String accountId;
         @Column(name="project_id")
         private Long projectId;
-
     }
 }

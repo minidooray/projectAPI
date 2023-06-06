@@ -24,7 +24,7 @@ public class Milestone {
     @Column(name = "milestone_end_at")
     private LocalDate milestoneEndAt;
     @ManyToOne
-    @Column(name = "project_id")
+    @JoinColumn(name = "project_id")
     private Project project;
 
     public void modify(String milestoneContent, LocalDate milestoneStartAt, LocalDate milestoneEndAt){

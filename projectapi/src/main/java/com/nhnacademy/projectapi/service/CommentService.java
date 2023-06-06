@@ -27,8 +27,8 @@ public class CommentService {
         return list.stream()
                 .map(m -> new CommentResponseDTO(m.getCommentId(),
                         m.getCommentContent(),
-                        m.getCommentAccount(),
-                        m.getCommentCreateAt()))
+                        m.getCommentAccountId(),
+                        m.getCommentCreatedAt()))
                 .collect(Collectors.toList());
     }
     @Transactional(readOnly = true)
@@ -36,8 +36,8 @@ public class CommentService {
         Comment comment = commentRepository.findById(commentId).orElseThrow();
         return new CommentResponseDTO(comment.getCommentId(),
                 comment.getCommentContent(),
-                comment.getCommentAccount(),
-                comment.getCommentCreateAt());
+                comment.getCommentAccountId(),
+                comment.getCommentCreatedAt());
     }
 
     public void createComment(Long taskId, CommentRequestDTO dto){
@@ -45,8 +45,8 @@ public class CommentService {
 
         Comment comment = new Comment().builder()
                 .commentContent(dto.getCommentContent())
-                .commentAccount(dto.getAccountId())
-                .commentCreateAt(LocalDate.now())
+                .commentAccountId(dto.getAccountId())
+                .commentCreatedAt(LocalDate.now())
                 .task(task)
                 .build();
 

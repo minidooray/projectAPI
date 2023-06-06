@@ -6,15 +6,16 @@ import com.nhnacademy.projectapi.repository.ProjectMemberRepository;
 import com.nhnacademy.projectapi.repository.ProjectRepository;
 import com.nhnacademy.projectapi.request.ProjectMemberRequestDTO;
 import com.nhnacademy.projectapi.response.ProjectMemberResponseDTO;
-import com.nhnacademy.projectapi.response.ProjectResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ProjectMemberService {
 
     private final ProjectRepository projectRepository;
@@ -30,7 +31,7 @@ public class ProjectMemberService {
     public void registerMember(Long id, ProjectMemberRequestDTO dto){
         Project project = projectRepository.findById(id).orElseThrow();
         ProjectMember projectMember = new ProjectMember().builder()
-                .pk(new ProjectMember.Pk(dto.getAccountId(), dto.getProjectId()))
+                .pk(new ProjectMember.Pk(dto.getAccountId(),id))
                 .project(project)
                 .build();
         projectMemberRepository.saveAndFlush(projectMember);

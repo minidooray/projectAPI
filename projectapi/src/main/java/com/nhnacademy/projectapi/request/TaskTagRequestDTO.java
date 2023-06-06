@@ -10,7 +10,5 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaskTagRequestDTO {
-    private Long taskId;
     private Long tagId;
-
 }

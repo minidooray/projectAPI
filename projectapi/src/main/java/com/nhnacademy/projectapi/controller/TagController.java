@@ -46,7 +46,7 @@ public class TagController {
         return "{\"result\":\"OK\"}";
     }
 
-    @DeleteMapping(value="/{projectId}/milestones/{taskId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping(value="/{projectId}/tags/{taskId}", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
     public String deleteTag(@PathVariable Long taskId){
         tagService.deleteTag(taskId);
