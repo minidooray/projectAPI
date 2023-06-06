@@ -1,0 +1,21 @@
+POST /projects/1/members
+Host: localhost:8082
+Content-Type: application/json
+
+{
+	"accountId":"user1"
+}
+
+###
+GET /projects/1/members
+Host: localhost:8082
+
+###
+
+DELETE /projects/1/members
+Host: localhost:8082
+Content-Type: application/json
+
+{
+	"accountId":"user3"
+}
