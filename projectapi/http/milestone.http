@@ -1,24 +1,24 @@
-POST /projects/1/milestones
+POST /projects/4/milestones
 Host: localhost:8082
 Content-Type: application/json
 
 {
-  "milestoneContent" : "마일스톤2",
+  "milestoneContent" : "마일스톤4-1",
   "milestoneStartAt" : "2023-06-02",
   "milestoneEndAt" : "2023-06-06"
 }
 
 ###
 
-GET /projects/1/milestones
+GET /projects/3/milestones
 Host: localhost:8082
 
 ###
 
-GET /projects/1/milestones/2
+GET /projects/2/milestones/10
 Host: localhost:8082
 
 ###
 
-DELETE /projects/1/milestones/1
+DELETE /projects/3/milestones/9
 Host: localhost:8082

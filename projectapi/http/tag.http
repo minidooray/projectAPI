@@ -1,9 +1,9 @@
-POST /projects/1/tags
+POST /projects/3/tags
 Host: localhost:8082
 Content-Type: application/json
 
 {
-	"tagContent" : "2주차"
+	"tagContent" : "3주차"
 }
 
 ###
@@ -18,5 +18,5 @@ Host: localhost:8082
 
 ###
 
-DELETE /projects/1/tags/1
+DELETE /projects/1/tags/3
 Host: localhost:8082

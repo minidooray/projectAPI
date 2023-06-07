@@ -1,10 +1,10 @@
-POST /projects/1/tasks
+POST /projects/2/tasks
 Host: localhost:8082
 Content-Type: application/json
 
 {
-  "taskTitle" : "업무 제목2",
-  "taskContent" :"업무 내용2" ,
+  "taskTitle" : "업무 제목4",
+  "taskContent" :"업무 내용4" ,
   "taskManagerId" : "user2",
   "taskStartAt" : "2023-06-01",
   "taskEndAt" : "2023-06-02"
@@ -17,10 +17,10 @@ Host: localhost:8082
 
 ###
 
-GET /projects/1/tasks/2
+GET /projects/1/tasks/5
 Host: localhost:8082
 
 ###
 
-DELETE /projects/1/tasks/1
+DELETE /projects/1/tasks/6
 Host: localhost:8082

@@ -3,20 +3,25 @@ Host: localhost:8082
 Content-Type: application/json
 
 {
-  "projectAdminId" : "user1",
-  "projectName" : "project1",
-  "projectDescription" : "1번프로젝트",
+  "projectAdminId" : "user4",
+  "projectName" : "project4",
+  "projectDescription" : "4번프로젝트",
   "projectStatus" : "ACTIVE"
 }
 
 ###
-
-GET /projects/2
+GET /projects/1/members/user1
 Host: localhost:8082
+Content-Type: application/json
 
 ###
 
 GET /projects
+Host: localhost:8082
+
+###
+
+GET /projects/1
 Host: localhost:8082
 
 ###

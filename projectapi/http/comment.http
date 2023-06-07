@@ -1,18 +1,18 @@
-POST /projects/1/comments
+POST /projects/1/tasks/1/comments
 Host: localhost:8082
 Content-Type: application/json
 
 {
-  "commentContent": 2,
+  "commentContent":"댓글1",
   "accountId": "user2"
 }
 
 ###
 
-GET /projects/1/taskTags/1
+GET /projects/1/tasks/1/comments
 Host: localhost:8082
 
 ###
 
-DELETE /projects/1/taskTags/1
+DELETE /projects/1/tasks/1/comments/3
 Host: localhost:8082
