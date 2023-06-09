@@ -5,8 +5,7 @@ Content-Type: application/json
 {
   "projectAdminId" : "user4",
   "projectName" : "project4",
-  "projectDescription" : "4번프로젝트",
-  "projectStatus" : "ACTIVE"
+  "projectDescription" : "4번프로젝트"
 }
 
 ###

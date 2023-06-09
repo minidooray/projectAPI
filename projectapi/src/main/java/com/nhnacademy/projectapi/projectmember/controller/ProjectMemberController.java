@@ -30,7 +30,7 @@ public class ProjectMemberController {
         return projectMemberService.getMembers(projectId);
     }
 
-    @GetMapping("/{projectId}/members/{loginId}")
+    @GetMapping("/members/{loginId}")
     public List<ProjectMemberProjectDTO> getProjectByMember(@PathVariable String loginId){
         return projectMemberService.getMemberByProject(loginId);
     }
