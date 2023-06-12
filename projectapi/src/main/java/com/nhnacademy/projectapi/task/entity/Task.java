@@ -33,9 +33,8 @@ public class Task {
     private LocalDate taskStartAt;
     @Column(name = "task_end_at")
     private LocalDate taskEndAt;
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "project_no")
+    @JoinColumn(name = "project_id")
     private Project project;
 
     public void modify(String taskTitle,String taskContent,String taskManagerId,

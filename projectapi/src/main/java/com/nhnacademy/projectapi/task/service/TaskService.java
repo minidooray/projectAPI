@@ -21,7 +21,6 @@ public class TaskService {
 
     private final ProjectRepository projectRepository;
     private final TaskRepository taskRepository;
-    private final MilestoneRepository milestoneRepository;
 
     public List<TaskResponseDTO> getTasks(Long projectId){
         List<Task> list = taskRepository.findByProject_ProjectId(projectId).orElseThrow();
@@ -52,6 +51,7 @@ public class TaskService {
         Task task = new Task().builder()
                 .taskTitle(dto.getTaskTitle())
                 .taskManagerId(dto.getTaskManagerId())
+                .taskRegisterId(dto.getTaskRegisterId())
                 .taskStartAt(dto.getTaskStartAt())
                 .taskEndAt(dto.getTaskEndAt())
                 .milestoneId(dto.getMilestoneId())
