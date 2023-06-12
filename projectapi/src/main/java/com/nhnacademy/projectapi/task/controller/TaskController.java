@@ -32,10 +32,9 @@ public class TaskController {
 
     @PostMapping("/{projectId}/tasks")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResultDTO createTask(@PathVariable Long projectId,
+    public TaskResponseDTO createTask(@PathVariable Long projectId,
                                 @RequestBody TaskRequestDTO dto){
-        taskService.createTask(projectId,dto);
-        return new ResultDTO("OK");
+        return taskService.createTask(projectId,dto);
     }
     @PatchMapping("/{projectId}/tasks/{taskId}")
     @ResponseStatus(HttpStatus.ACCEPTED)

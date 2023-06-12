@@ -1,9 +1,9 @@
-POST /projects/4/milestones
+POST /projects/9/milestones
 Host: localhost:8082
 Content-Type: application/json
 
 {
-  "milestoneContent" : "마일스톤4-1",
+  "milestoneContent" : "마일스톤9-2",
   "milestoneStartAt" : "2023-06-02",
   "milestoneEndAt" : "2023-06-06"
 }

@@ -27,6 +27,12 @@ public class TaskTagService {
                 .map(m -> new TaskTagResponseDTO(m.getTag().getTagId()))
                 .collect(Collectors.toList());
     }
+    public List<TaskTagResponseDTO> getTagByProject(Long taskId){
+        List<TaskTag> list = taskTagRepository.findByPk_TaskId(taskId).orElseThrow();
+        return list.stream()
+                .map(m -> new TaskTagResponseDTO(m.getTag().getTagId()))
+                .collect(Collectors.toList());
+    }
     public TaskTagResponseDTO getTaskTag(Long tagId){
         TaskTag taskTag = taskTagRepository.findByPk_TagId(tagId).orElseThrow();
         return new TaskTagResponseDTO(taskTag.getPk().getTagId());

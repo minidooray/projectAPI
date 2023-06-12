@@ -47,7 +47,7 @@ public class TaskService {
                 task.getTaskEndAt(),
                 task.getMilestoneId());
     }
-    public void createTask(Long id,TaskRequestDTO dto){
+    public TaskResponseDTO createTask(Long id,TaskRequestDTO dto){
         Project project = projectRepository.findById(id).orElseThrow();
         Task task = new Task().builder()
                 .taskTitle(dto.getTaskTitle())
@@ -58,8 +58,15 @@ public class TaskService {
                 .taskContent(dto.getTaskContent())
                 .project(project)
                 .build();
-
         taskRepository.saveAndFlush(task);
+        return new TaskResponseDTO(task.getTaskId(),
+                task.getTaskTitle(),
+                task.getTaskContent(),
+                task.getTaskManagerId(),
+                task.getTaskRegisterId(),
+                task.getTaskStartAt(),
+                task.getTaskEndAt(),
+                task.getMilestoneId());
     }
 
     public void updateTask(Long projectId,Long taskId,TaskRequestDTO dto){

@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MilestoneRequestDTO {
-
     private String milestoneContent;
     private LocalDate milestoneStartAt;
     private LocalDate milestoneEndAt;
