@@ -1,6 +1,5 @@
 package com.nhnacademy.projectapi.task.entity;
 
-import com.nhnacademy.projectapi.milestone.entity.Milestone;
 import com.nhnacademy.projectapi.project.entity.Project;
 import lombok.*;
 
@@ -26,19 +25,21 @@ public class Task {
     private String taskContent;
     @Column(name = "task_manager_id")
     private String taskManagerId;
-    @OneToOne
-    @JoinColumn(name = "milestone_id")
-    private Milestone milestone;
+    @Column(name = "task_register_id")
+    private String taskRegisterId;
+    @Column(name = "milestone_id")
+    private Long milestoneId;
     @Column(name = "task_start_at")
     private LocalDate taskStartAt;
     @Column(name = "task_end_at")
     private LocalDate taskEndAt;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "project_no")
     private Project project;
 
     public void modify(String taskTitle,String taskContent,String taskManagerId,
-                       Milestone milestone, LocalDate taskStartAt, LocalDate taskEndAt){
+                       Long milestoneId, LocalDate taskStartAt, LocalDate taskEndAt){
         if(taskTitle != null){
             this.taskTitle = taskTitle;
         }
@@ -48,8 +49,8 @@ public class Task {
         if(taskManagerId != null){
             this.taskManagerId = taskManagerId;
         }
-        if(milestone != null){
-            this.milestone = milestone;
+        if(milestoneId != null){
+            this.milestoneId = milestoneId;
         }
         if(taskStartAt != null){
             this.taskStartAt = taskStartAt;

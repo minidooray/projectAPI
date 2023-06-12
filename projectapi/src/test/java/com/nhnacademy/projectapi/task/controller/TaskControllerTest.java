@@ -73,8 +73,11 @@ class TaskControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("result",equalTo("OK")));
     }
-
     @Test
-    void deleteTask() {
+    void deleteTask() throws Exception {
+        mockMvc.perform(delete("/projects/{projectId}/tasks/{taskId}","1","6"))
+                .andExpect(status().isAccepted())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("result",equalTo("OK")));
     }
 }

@@ -1,6 +1,5 @@
 POST /projects/5/members/tkdltlf4
 Host: localhost:8082
-Content-Type: application/json
 
 ###
 
@@ -16,4 +15,3 @@ Host: localhost:8082
 
 DELETE /projects/3/members/user5
 Host: localhost:8082
-Content-Type: application/json

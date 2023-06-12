@@ -6,8 +6,10 @@ Content-Type: application/json
   "taskTitle" : "야호",
   "taskContent" :"업무 내용4" ,
   "taskManagerId" : "user2",
+  "taskRegisterId" : "user2",
   "taskStartAt" : "2023-06-01",
-  "taskEndAt" : "2023-06-02"
+  "taskEndAt" : "2023-06-02",
+  "milestoneId": 1
 }
 
 ###

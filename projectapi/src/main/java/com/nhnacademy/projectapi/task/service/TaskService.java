@@ -1,19 +1,17 @@
 package com.nhnacademy.projectapi.task.service;
 
-import com.nhnacademy.projectapi.milestone.entity.Milestone;
-import com.nhnacademy.projectapi.project.entity.Project;
-import com.nhnacademy.projectapi.task.entity.Task;
 import com.nhnacademy.projectapi.milestone.repository.MilestoneRepository;
+import com.nhnacademy.projectapi.project.entity.Project;
 import com.nhnacademy.projectapi.project.repository.ProjectRepository;
-import com.nhnacademy.projectapi.task.repository.TaskRepository;
 import com.nhnacademy.projectapi.task.dto.TaskRequestDTO;
 import com.nhnacademy.projectapi.task.dto.TaskResponseDTO;
+import com.nhnacademy.projectapi.task.entity.Task;
+import com.nhnacademy.projectapi.task.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,8 +30,10 @@ public class TaskService {
                         m.getTaskTitle(),
                         m.getTaskContent(),
                         m.getTaskManagerId(),
+                        m.getTaskRegisterId(),
                         m.getTaskStartAt(),
-                        m.getTaskEndAt()))
+                        m.getTaskEndAt(),
+                        m.getMilestoneId()))
                 .collect(Collectors.toList());
     }
     public TaskResponseDTO getTask(Long id){
@@ -42,21 +42,19 @@ public class TaskService {
                 task.getTaskTitle(),
                 task.getTaskContent(),
                 task.getTaskManagerId(),
+                task.getTaskRegisterId(),
                 task.getTaskStartAt(),
-                task.getTaskEndAt());
+                task.getTaskEndAt(),
+                task.getMilestoneId());
     }
     public void createTask(Long id,TaskRequestDTO dto){
         Project project = projectRepository.findById(id).orElseThrow();
-        Milestone milestone = null;
-        if(Objects.nonNull(dto.getMilestoneId())){
-            milestone = milestoneRepository.findById(dto.getMilestoneId()).orElse(new Milestone());
-        }
         Task task = new Task().builder()
                 .taskTitle(dto.getTaskTitle())
                 .taskManagerId(dto.getTaskManagerId())
                 .taskStartAt(dto.getTaskStartAt())
                 .taskEndAt(dto.getTaskEndAt())
-                .milestone(milestone)
+                .milestoneId(dto.getMilestoneId())
                 .taskContent(dto.getTaskContent())
                 .project(project)
                 .build();
@@ -66,14 +64,9 @@ public class TaskService {
 
     public void updateTask(Long projectId,Long taskId,TaskRequestDTO dto){
         Task task = taskRepository.findById(taskId).orElseThrow();
-        Milestone milestone = null;
-        if(Objects.nonNull(dto.getMilestoneId())){
-            milestone = milestoneRepository.findById(dto.getMilestoneId()).orElse(new Milestone());
-        }
         task.modify(dto.getTaskTitle(), dto.getTaskContent(), dto.getTaskManagerId(),
-                milestone,dto.getTaskStartAt(),dto.getTaskEndAt());
+                dto.getMilestoneId(),dto.getTaskStartAt(),dto.getTaskEndAt());
         taskRepository.save(task);
-
 
     }
     public void deleteTask(Long taskId){

@@ -31,9 +31,8 @@ public class ProjectController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResultDTO createProject(@RequestBody ProjectRequestDTO dto){
-        projectService.createProject(dto);
-        return new ResultDTO("OK");
+    public ProjectResponseDTO createProject(@RequestBody ProjectRequestDTO dto){
+        return projectService.createProject(dto);
     }
 
     @PatchMapping("/{projectId}")

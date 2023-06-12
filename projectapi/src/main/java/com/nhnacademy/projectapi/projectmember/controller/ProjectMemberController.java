@@ -24,12 +24,10 @@ public class ProjectMemberController {
         projectMemberService.registerMember(projectId,loginId);
         return new ResultDTO("OK");
     }
-
     @GetMapping("/{projectId}/members")
     public List<ProjectMemberAccountDTO> getProjectMembers(@PathVariable Long projectId){
         return projectMemberService.getMembers(projectId);
     }
-
     @GetMapping("/members/{loginId}")
     public List<ProjectMemberProjectDTO> getProjectByMember(@PathVariable String loginId){
         return projectMemberService.getMemberByProject(loginId);

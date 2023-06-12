@@ -18,7 +18,8 @@ public class TaskResponseDTO {
     private String taskTitle;
     private String taskContent;
     private String taskManagerId;
+    private String taskRegisterId;
     private LocalDate taskStartAt;
     private LocalDate taskEndAt;
-
+    private Long milestoneId;
 }
