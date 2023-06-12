@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,12 +47,16 @@ public class TaskService {
     }
     public void createTask(Long id,TaskRequestDTO dto){
         Project project = projectRepository.findById(id).orElseThrow();
-
+        Milestone milestone = null;
+        if(Objects.nonNull(dto.getMilestoneId())){
+            milestone = milestoneRepository.findById(dto.getMilestoneId()).orElse(new Milestone());
+        }
         Task task = new Task().builder()
                 .taskTitle(dto.getTaskTitle())
                 .taskManagerId(dto.getTaskManagerId())
                 .taskStartAt(dto.getTaskStartAt())
                 .taskEndAt(dto.getTaskEndAt())
+                .milestone(milestone)
                 .taskContent(dto.getTaskContent())
                 .project(project)
                 .build();
@@ -61,10 +66,15 @@ public class TaskService {
 
     public void updateTask(Long projectId,Long taskId,TaskRequestDTO dto){
         Task task = taskRepository.findById(taskId).orElseThrow();
-        Milestone milestone = milestoneRepository.findById(dto.getMilestoneId()).orElseThrow();
+        Milestone milestone = null;
+        if(Objects.nonNull(dto.getMilestoneId())){
+            milestone = milestoneRepository.findById(dto.getMilestoneId()).orElse(new Milestone());
+        }
         task.modify(dto.getTaskTitle(), dto.getTaskContent(), dto.getTaskManagerId(),
                 milestone,dto.getTaskStartAt(),dto.getTaskEndAt());
         taskRepository.save(task);
+
+
     }
     public void deleteTask(Long taskId){
         Task task = taskRepository.findById(taskId)

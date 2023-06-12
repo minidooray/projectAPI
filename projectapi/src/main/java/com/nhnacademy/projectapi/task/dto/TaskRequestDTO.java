@@ -19,5 +19,4 @@ public class TaskRequestDTO {
     private LocalDate taskStartAt;
     private LocalDate taskEndAt;
     private Long milestoneId;
-
 }

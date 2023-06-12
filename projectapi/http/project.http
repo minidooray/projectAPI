@@ -9,9 +9,8 @@ Content-Type: application/json
 }
 
 ###
-GET /projects/1/members/user1
+GET /projects/members/user1
 Host: localhost:8082
-Content-Type: application/json
 
 ###
 

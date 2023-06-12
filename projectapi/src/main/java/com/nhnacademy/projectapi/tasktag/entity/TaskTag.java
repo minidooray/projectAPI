@@ -18,7 +18,6 @@ public class TaskTag {
 
     @EmbeddedId
     private Pk pk;
-
     @MapsId("taskId")
     @JoinColumn(name="task_id")
     @ManyToOne
@@ -27,7 +26,6 @@ public class TaskTag {
     @JoinColumn(name="tag_id")
     @ManyToOne
     private Tag tag;
-
     @Getter
     @EqualsAndHashCode
     @NoArgsConstructor

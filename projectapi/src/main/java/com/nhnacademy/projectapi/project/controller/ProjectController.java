@@ -30,7 +30,7 @@ public class ProjectController {
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.ACCEPTED)
+    @ResponseStatus(HttpStatus.CREATED)
     public ResultDTO createProject(@RequestBody ProjectRequestDTO dto){
         projectService.createProject(dto);
         return new ResultDTO("OK");

@@ -1,9 +1,9 @@
-POST /projects/2/tasks
+POST /projects/1/tasks
 Host: localhost:8082
 Content-Type: application/json
 
 {
-  "taskTitle" : "업무 제목4",
+  "taskTitle" : "야호",
   "taskContent" :"업무 내용4" ,
   "taskManagerId" : "user2",
   "taskStartAt" : "2023-06-01",
@@ -19,6 +19,16 @@ Host: localhost:8082
 
 GET /projects/1/tasks/5
 Host: localhost:8082
+
+###
+
+PATCH /projects/1/tasks/4
+Host: localhost:8082
+Content-Type: application/json
+
+{
+  "taskManagerId": "user7"
+}
 
 ###
 
