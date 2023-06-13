@@ -1,6 +1,5 @@
 package com.nhnacademy.projectapi.task.service;
 
-import com.nhnacademy.projectapi.milestone.repository.MilestoneRepository;
 import com.nhnacademy.projectapi.project.entity.Project;
 import com.nhnacademy.projectapi.project.repository.ProjectRepository;
 import com.nhnacademy.projectapi.task.dto.TaskRequestDTO;

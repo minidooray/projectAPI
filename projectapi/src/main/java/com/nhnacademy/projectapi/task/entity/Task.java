@@ -58,5 +58,4 @@ public class Task {
             this.taskEndAt = taskEndAt;
         }
     }
-
 }
