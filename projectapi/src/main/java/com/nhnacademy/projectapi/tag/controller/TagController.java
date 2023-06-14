@@ -22,7 +22,11 @@ public class TagController {
     public List<TagResponseDTO> getTags(@PathVariable Long projectId){
         return tagService.getTags(projectId);
     }
-
+    @GetMapping("/{projectId}/tags/{tagId}")
+    @ResponseStatus(HttpStatus.OK)
+    public TagResponseDTO getTag(@PathVariable Long tagId){
+        return tagService.getTag(tagId);
+    }
     @PostMapping( "/{projectId}/tags")
     @ResponseStatus(HttpStatus.CREATED)
     public ResultDTO createTag(@PathVariable Long projectId,
