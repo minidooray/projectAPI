@@ -22,8 +22,8 @@ public class CommentService {
     private final TaskRepository taskRepository;
 
     @Transactional(readOnly = true)
-    public List<CommentResponseDTO> getComments(Long projectId){
-        List<Comment> list = commentRepository.findByTask_TaskId(projectId).orElseThrow();
+    public List<CommentResponseDTO> getComments(Long taskId){
+        List<Comment> list = commentRepository.findByTask_TaskId(taskId).orElseThrow();
         return list.stream()
                 .map(m -> new CommentResponseDTO(m.getCommentId(),
                         m.getCommentContent(),

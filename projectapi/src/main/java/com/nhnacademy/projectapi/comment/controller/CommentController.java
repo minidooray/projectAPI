@@ -19,8 +19,8 @@ public class CommentController {
 
     @GetMapping("/comments")
     @ResponseStatus(HttpStatus.OK)
-    public List<CommentResponseDTO> getComments(@PathVariable Long projectId){
-        return commentService.getComments(projectId);
+    public List<CommentResponseDTO> getComments(@PathVariable Long taskId){
+        return commentService.getComments(taskId);
     }
     @GetMapping("/comments/{commentId}")
     @ResponseStatus(HttpStatus.OK)
