@@ -1,5 +1,6 @@
 package com.nhnacademy.projectapi.tasktag.service;
 
+import com.nhnacademy.projectapi.exception.NotFoundException;
 import com.nhnacademy.projectapi.tag.entity.Tag;
 import com.nhnacademy.projectapi.tag.repository.TagRepository;
 import com.nhnacademy.projectapi.task.entity.Task;
@@ -38,14 +39,14 @@ public class TaskTagService {
         return new TaskTagResponseDTO(taskTag.getPk().getTagId());
     }
     public void createTaskTag(Long taskId, Long tagId){
-        Task task = taskRepository.findById(taskId).orElseThrow();
-        Tag tag = tagRepository.findById(tagId).orElseThrow();
+        Task task = taskRepository.findById(taskId).orElseThrow(() -> new NotFoundException("태스크가 없습니다"));
+        Tag tag = tagRepository.findById(tagId).orElseThrow(() -> new NotFoundException("태그가 없습니다."));
         TaskTag taskTag = new TaskTag().builder()
                 .pk(new TaskTag.Pk(taskId, tagId))
                 .tag(tag)
                 .task(task)
                 .build();
-        taskTagRepository.saveAndFlush(taskTag);
+        taskTagRepository.save(taskTag);
     }
 
     public void deleteTaskTag(Long tagId){

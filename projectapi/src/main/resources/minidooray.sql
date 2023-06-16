@@ -38,7 +38,7 @@ create table Tasks(
     task_title varchar(255) not null,
     task_content varchar(5096),
     task_manager_id varchar(30),
-    task_milestone_id BIGINT,
+    milestone_id BIGINT,
 	task_start_at Date,
     task_end_at Date,
     project_id BIGINT

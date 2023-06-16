@@ -1,6 +1,7 @@
 package com.nhnacademy.projectapi.comment.service;
 
 import com.nhnacademy.projectapi.comment.entity.Comment;
+import com.nhnacademy.projectapi.exception.NotFoundException;
 import com.nhnacademy.projectapi.task.entity.Task;
 import com.nhnacademy.projectapi.comment.repository.CommentRepository;
 import com.nhnacademy.projectapi.task.repository.TaskRepository;
@@ -33,15 +34,14 @@ public class CommentService {
     }
     @Transactional(readOnly = true)
     public CommentResponseDTO getComment(Long commentId){
-        Comment comment = commentRepository.findById(commentId).orElseThrow();
+        Comment comment = commentRepository.findById(commentId).orElseThrow(()->new NotFoundException("코멘트가 없습니다."));
         return new CommentResponseDTO(comment.getCommentId(),
                 comment.getCommentContent(),
                 comment.getCommentAccountId(),
                 comment.getCommentCreatedAt());
     }
-
     public void createComment(Long taskId, CommentRequestDTO dto){
-        Task task = taskRepository.findById(taskId).orElseThrow();
+        Task task = taskRepository.findById(taskId).orElseThrow(()->new NotFoundException("태스크가 없습니다."));
 
         Comment comment = new Comment().builder()
                 .commentContent(dto.getCommentContent())
@@ -50,17 +50,15 @@ public class CommentService {
                 .task(task)
                 .build();
 
-        commentRepository.saveAndFlush(comment);
-    }
-
-    public void updateComment(Long commentId,CommentRequestDTO dto){
-        Comment comment = commentRepository.findById(commentId).orElseThrow();
-        comment.modify(dto.getCommentContent());
         commentRepository.save(comment);
+    }
+    public void updateComment(Long commentId,CommentRequestDTO dto){
+        Comment comment = commentRepository.findById(commentId).orElseThrow(()->new NotFoundException("코멘트가 없습니다."));
+        comment.modify(dto.getCommentContent());
     }
     public void deleteComment(Long commentId){
         Comment comment = commentRepository.findById(commentId)
-                .orElseThrow();
+                .orElseThrow(()->new NotFoundException("코멘트가 없습니다."));
         commentRepository.delete(comment);
     }
 }

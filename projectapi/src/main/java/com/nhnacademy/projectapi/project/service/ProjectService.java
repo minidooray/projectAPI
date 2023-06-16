@@ -1,10 +1,12 @@
 package com.nhnacademy.projectapi.project.service;
 
 import com.nhnacademy.projectapi.ProjectStatus;
-import com.nhnacademy.projectapi.project.entity.Project;
-import com.nhnacademy.projectapi.project.repository.ProjectRepository;
+import com.nhnacademy.projectapi.ResultDTO;
+import com.nhnacademy.projectapi.exception.NotFoundException;
 import com.nhnacademy.projectapi.project.dto.ProjectRequestDTO;
 import com.nhnacademy.projectapi.project.dto.ProjectResponseDTO;
+import com.nhnacademy.projectapi.project.entity.Project;
+import com.nhnacademy.projectapi.project.repository.ProjectRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +31,7 @@ public class ProjectService {
                 .collect(Collectors.toList());
     }
     public ProjectResponseDTO getProject(Long id){
-        Project project = projectRepository.findById(id).orElseThrow();
+        Project project = projectRepository.findById(id).orElseThrow(() -> new NotFoundException("프로젝트가 없습니다."));
         return new ProjectResponseDTO(project.getProjectId(),
                 project.getProjectAdminId(),
                 project.getProjectName(),
@@ -44,7 +46,7 @@ public class ProjectService {
                 .projectName(dto.getProjectName())
                 .projectStatus(ProjectStatus.ACTIVE.getStatus())
                 .build();
-        projectRepository.saveAndFlush(project);
+        projectRepository.save(project);
 
         return new ProjectResponseDTO(project.getProjectId(),
                 project.getProjectAdminId(),
@@ -52,12 +54,12 @@ public class ProjectService {
                 project.getProjectDescription(),
                 project.getProjectStatus());
     }
-    public void updateProject(Long id,ProjectRequestDTO dto){
+    public ResultDTO updateProject(Long id,ProjectRequestDTO dto){
 
-        Project project = projectRepository.findById(id).orElseThrow();
+        Project project = projectRepository.findById(id).orElseThrow(()->new NotFoundException("프로젝트가 없습니다."));
 
         project.updateStatus(ProjectStatus.valueOf(dto.getProjectStatus()).getStatus());
-
         projectRepository.save(project);
+        return new ResultDTO("OK");
     }
 }

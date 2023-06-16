@@ -1,5 +1,6 @@
 package com.nhnacademy.projectapi.milestone.service;
 
+import com.nhnacademy.projectapi.exception.NotFoundException;
 import com.nhnacademy.projectapi.milestone.entity.Milestone;
 import com.nhnacademy.projectapi.project.entity.Project;
 import com.nhnacademy.projectapi.milestone.repository.MilestoneRepository;
@@ -33,7 +34,7 @@ public class MilestoneService {
     }
     @Transactional(readOnly = true)
     public MilestoneResponseDTO getMilestone(Long milestoneId){
-        Milestone milestone = milestoneRepository.findById(milestoneId).orElseThrow();
+        Milestone milestone = milestoneRepository.findById(milestoneId).orElseThrow(()->new NotFoundException("마일스톤이 없습니다."));
         return new MilestoneResponseDTO(milestone.getMilestoneId(),
                 milestone.getMilestoneContent(),
                 milestone.getMilestoneStartAt(),
@@ -41,7 +42,7 @@ public class MilestoneService {
     }
 
     public void createMilestone(Long milestoneId, MilestoneRequestDTO dto){
-        Project project = projectRepository.findById(milestoneId).orElseThrow();
+        Project project = projectRepository.findById(milestoneId).orElseThrow(()->new NotFoundException("프로젝트가 없습니다."));
 
         Milestone milestone = new Milestone().builder()
                 .milestoneContent(dto.getMilestoneContent())
@@ -50,11 +51,11 @@ public class MilestoneService {
                 .project(project)
                 .build();
 
-        milestoneRepository.saveAndFlush(milestone);
+        milestoneRepository.save(milestone);
     }
 
     public void updateMilestone(Long milestoneId,MilestoneRequestDTO dto){
-        Milestone milestone = milestoneRepository.findById(milestoneId).orElseThrow();
+        Milestone milestone = milestoneRepository.findById(milestoneId).orElseThrow(()->new NotFoundException("마일스톤이 없습니다."));
         milestone.modify(dto.getMilestoneContent(),
                 dto.getMilestoneStartAt(),
                 dto.getMilestoneEndAt());
@@ -62,7 +63,7 @@ public class MilestoneService {
     }
     public void deleteMilestone(Long milestoneId){
         Milestone milestone = milestoneRepository.findById(milestoneId)
-                .orElseThrow();
+                .orElseThrow(()->new NotFoundException("마일스톤이 없습니다."));
         milestoneRepository.delete(milestone);
     }
 }

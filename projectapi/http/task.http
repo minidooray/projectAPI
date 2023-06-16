@@ -4,12 +4,11 @@ Content-Type: application/json
 
 {
   "taskTitle" : "야호",
-  "taskContent" :"업무 내용4" ,
-  "taskManagerId" : "user2",
-  "taskRegisterId" : "user2",
+  "taskContent" :"업무 내용1" ,
+  "taskManagerId" : "admin22",
+  "taskRegisterId" : "admin22",
   "taskStartAt" : "2023-06-01",
-  "taskEndAt" : "2023-06-02",
-  "milestoneId": 1
+  "taskEndAt" : "2023-06-02"
 }
 
 ###

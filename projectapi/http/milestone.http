@@ -10,15 +10,27 @@ Content-Type: application/json
 
 ###
 
-GET /projects/3/milestones
+GET /projects/9/milestones
 Host: localhost:8082
 
 ###
 
-GET /projects/2/milestones/10
+PATCH /projects/9/milestones/7
+Host: localhost:8082
+Content-Type: application/json
+
+{
+  "milestoneContent" : "수정테스트",
+  "milestoneStartAt" : "2023-06-02",
+  "milestoneEndAt" : "2023-06-06"
+}
+
+###
+
+GET /projects/9/milestones/7
 Host: localhost:8082
 
 ###
 
-DELETE /projects/3/milestones/9
+DELETE /projects/9/milestones/7
 Host: localhost:8082

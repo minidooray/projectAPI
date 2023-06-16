@@ -1,6 +1,7 @@
 package com.nhnacademy.projectapi.project.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nhnacademy.projectapi.ResultDTO;
 import com.nhnacademy.projectapi.project.dto.ProjectRequestDTO;
 import com.nhnacademy.projectapi.project.dto.ProjectResponseDTO;
 import com.nhnacademy.projectapi.project.service.ProjectService;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -47,37 +50,46 @@ class ProjectControllerTest {
 
     @Test
     void getProject() throws Exception {
+        ProjectResponseDTO dto = new ProjectResponseDTO(1L,"admin","프로젝트1","설명","ACTIVE");
+        given(projectService.getProject(anyLong()))
+                .willReturn(dto);
+
         mockMvc.perform(get("/projects/2"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("projectId",equalTo(2)));
+                .andExpect(jsonPath("projectId",equalTo(1)));
     }
 
     @Test
     void createProject() throws Exception{
-        ProjectRequestDTO dto = new ProjectRequestDTO("user7","project7","7번 프로젝트","ACTIVE");
+        ProjectResponseDTO dto = new ProjectResponseDTO(1L,"admin","프로젝트1","설명","ACTIVE");
+
+        given(projectService.createProject(any()))
+                .willReturn(dto);
+
         mockMvc.perform(post("/projects")
                         .content(objectMapper.writeValueAsString(dto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("result",equalTo("OK")));
+                .andExpect(jsonPath("projectId",equalTo(1)));
     }
 
     @Test
     void updateProject() throws Exception{
         ProjectRequestDTO dto = new ProjectRequestDTO();
         dto.setProjectStatus("SLEEP");
-        mockMvc.perform(patch("/projects/6")
+
+        ResultDTO response = new ResultDTO("OK");
+
+        given(projectService.updateProject(anyLong(),any()))
+                .willReturn(response);
+
+        mockMvc.perform(patch("/projects/1")
                         .content(objectMapper.writeValueAsString(dto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isAccepted())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("result",equalTo("OK")));
-
-        mockMvc.perform(get("/projects/6"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("projectStatus",equalTo("SLEEP")));
     }
 }

@@ -2,6 +2,8 @@ package com.nhnacademy.projectapi.tag.entity;
 
 import com.nhnacademy.projectapi.project.entity.Project;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 
@@ -24,6 +26,7 @@ public class Tag {
 
     @ManyToOne
     @JoinColumn(name = "project_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Project project;
 
     public void modify(String tagContent){

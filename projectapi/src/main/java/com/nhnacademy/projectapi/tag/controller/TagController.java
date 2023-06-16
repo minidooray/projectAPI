@@ -35,19 +35,19 @@ public class TagController {
         return new ResultDTO("OK");
     }
 
-    @PatchMapping( "/{projectId}/tags/{taskId}")
+    @PatchMapping( "/{projectId}/tags/{tagId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResultDTO updateTag(@PathVariable Long projectId,
-                                     @PathVariable Long taskId,
+                                     @PathVariable Long tagId,
                                      @RequestBody TagRequestDTO dto){
-        tagService.updateTag(taskId,dto);
+        tagService.updateTag(tagId,dto);
         return new ResultDTO("OK");
     }
 
-    @DeleteMapping("/{projectId}/tags/{taskId}")
+    @DeleteMapping("/{projectId}/tags/{tagId}")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public ResultDTO deleteTag(@PathVariable Long taskId){
-        tagService.deleteTag(taskId);
+    public ResultDTO deleteTag(@PathVariable Long tagId){
+        tagService.deleteTag(tagId);
         return new ResultDTO("OK");
     }
 }

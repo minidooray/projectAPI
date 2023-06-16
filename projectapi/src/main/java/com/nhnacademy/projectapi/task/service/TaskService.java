@@ -1,5 +1,6 @@
 package com.nhnacademy.projectapi.task.service;
 
+import com.nhnacademy.projectapi.exception.NotFoundException;
 import com.nhnacademy.projectapi.project.entity.Project;
 import com.nhnacademy.projectapi.project.repository.ProjectRepository;
 import com.nhnacademy.projectapi.task.dto.TaskRequestDTO;
@@ -35,7 +36,7 @@ public class TaskService {
                 .collect(Collectors.toList());
     }
     public TaskResponseDTO getTask(Long id){
-        Task task = taskRepository.findById(id).orElseThrow();
+        Task task = taskRepository.findById(id).orElseThrow(()->new NotFoundException("태스크가 없습니다."));
         return new TaskResponseDTO(task.getTaskId(),
                 task.getTaskTitle(),
                 task.getTaskContent(),
@@ -46,7 +47,7 @@ public class TaskService {
                 task.getMilestoneId());
     }
     public TaskResponseDTO createTask(Long id,TaskRequestDTO dto){
-        Project project = projectRepository.findById(id).orElseThrow();
+        Project project = projectRepository.findById(id).orElseThrow(()->new NotFoundException("프로젝트가 없습니다."));
         Task task = new Task().builder()
                 .taskTitle(dto.getTaskTitle())
                 .taskManagerId(dto.getTaskManagerId())
@@ -57,7 +58,7 @@ public class TaskService {
                 .taskContent(dto.getTaskContent())
                 .project(project)
                 .build();
-        taskRepository.saveAndFlush(task);
+        taskRepository.save(task);
         return new TaskResponseDTO(task.getTaskId(),
                 task.getTaskTitle(),
                 task.getTaskContent(),
@@ -69,7 +70,7 @@ public class TaskService {
     }
 
     public void updateTask(Long projectId,Long taskId,TaskRequestDTO dto){
-        Task task = taskRepository.findById(taskId).orElseThrow();
+        Task task = taskRepository.findById(taskId).orElseThrow(()->new NotFoundException("태스크가 없습니다."));
         task.modify(dto.getTaskTitle(), dto.getTaskContent(), dto.getTaskManagerId(),
                 dto.getMilestoneId(),dto.getTaskStartAt(),dto.getTaskEndAt());
         taskRepository.save(task);
@@ -77,7 +78,7 @@ public class TaskService {
     }
     public void deleteTask(Long taskId){
         Task task = taskRepository.findById(taskId)
-                .orElseThrow();
+                .orElseThrow(()->new NotFoundException("태스크가 없습니다."));
         taskRepository.delete(task);
     }
 }

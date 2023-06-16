@@ -18,5 +18,15 @@ Host: localhost:8082
 
 ###
 
-DELETE /projects/1/tags/3
+PATCH /projects/2/tags/2
+Host: localhost:8082
+Content-Type: application/json
+
+{
+  "tagContent" : "수정"
+}
+
+###
+
+DELETE /projects/2/tags/2
 Host: localhost:8082
